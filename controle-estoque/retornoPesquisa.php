@@ -37,8 +37,8 @@ if ($resultado) {
     $msg .= '<td id="qnt">'.$res['qnt'].'</td>';
     $msg .= '<td id="media">'.$res['media'].'</td>';
     $msg .= '<td class="botoes">
-    <a href="#?id='.$res['id'].'&op=1" class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="modal('.$res['id'].',1)">Inserir</a>
-    <a href="#?id='.$res['id'].'&op=0" class="btn btn-danger" data-toggle="modal" data-target="#modal" onclick="modal('.$res['id'].',0)">Saida</a>
+    <a href="#?id='.$res['id'].'&op=entrada" class="btn btn-success" data-toggle="modal" data-target="#modal" onclick="modal('.$res['id'].', 1)">Inserir</a>
+    <a href="#?id='.$res['id'].'&op=saida" class="btn btn-danger" data-toggle="modal" data-target="#modal" onclick="modal('.$res['id'].', 0)">Saida</a>
     </td>';
   }
 } else {
@@ -51,7 +51,4 @@ $msg .= '</table>';
 
 //retorna a msg concatenada
 echo $msg;
-
-
-
 ?>
