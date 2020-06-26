@@ -133,13 +133,13 @@ CREATE TABLE IF NOT EXISTS `relatorio` (
 -- Copiando dados para a tabela controle-estoque.relatorio: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `relatorio` DISABLE KEYS */;
 INSERT IGNORE INTO `relatorio` (`id`, `id_usuario`, `operacao`, `produto`, `qntOperacao`, `qntAtual`, `medico`, `datatime`) VALUES
-	(1, 1, '1', 'ÁCIDO ACÉTICO 3%', 500, 0, '', '0000-00-00 00:00:00'),
-	(2, 1, '1', 'ÁCIDO ACÉTICO 3%', 100, 0, '', '2020-06-23 15:42:16'),
-	(3, 1, '1', 'ÁCIDO ACÉTICO 3%', 500, 520, '', '2020-06-22 15:53:43'),
-	(4, 1, '0', 'ÁCIDO ACÉTICO 3%', 100, 420, 'Dra. Gabriela', '2020-06-23 16:32:57'),
-	(5, 7, '1', 'AGULHA DESCARTÁVEL 13X4,5 (insulina)', 10, 10, '', '2020-06-23 16:57:44'),
-	(6, 7, '0', 'AGULHA DESCARTÁVEL 13X4,5 (insulina)', 5, 5, 'Dr. Elder', '2020-05-23 16:58:30'),
-	(7, 2, '1', 'ÁCIDO ÁCETICO 5%', 10, 15, '', '2020-06-23 17:49:53');
+	(1, 1, 'Entrada', 'ÁCIDO ACÉTICO 3%', 500, 0, '', '0000-00-00 00:00:00'),
+	(2, 1, 'Entrada', 'ÁCIDO ACÉTICO 3%', 100, 0, '', '2020-06-23 15:42:16'),
+	(3, 1, 'Entrada', 'ÁCIDO ACÉTICO 3%', 500, 520, '', '2020-06-22 15:53:43'),
+	(4, 1, 'Saída', 'ÁCIDO ACÉTICO 3%', 100, 420, 'Dra. Gabriela', '2020-06-23 16:32:57'),
+	(5, 7, 'Entrada', 'AGULHA DESCARTÁVEL 13X4,5 (insulina)', 10, 10, '', '2020-06-23 16:57:44'),
+	(6, 7, 'Saída', 'AGULHA DESCARTÁVEL 13X4,5 (insulina)', 5, 5, 'Dr. Elder', '2020-05-23 16:58:30'),
+	(7, 2, 'Entrada', 'ÁCIDO ÁCETICO 5%', 10, 15, '', '2020-06-23 17:49:53');
 /*!40000 ALTER TABLE `relatorio` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela controle-estoque.usuarios
