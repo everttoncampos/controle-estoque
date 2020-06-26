@@ -1,97 +1,102 @@
-<html>
-<head>
-<style>
-  table tbody{
-  }
-  thead tr {
-    background-color: #CCC !important;
-
-  }
-  td, th {
-    padding: 15px 10px;
-    font-weight: 600;
-  }
-  tr:nth-child(even) {
-    background-color: rgba(150, 230, 150, 0.5);
-  }
-  tr:nth-child(odd) {
-    background-color: #abc;
-  }
-</style>
-</head>
-</html>
-
 <?php
 session_start();
 require_once ('config.php');
 require_once 'vendor/autoload.php';
 
-$mpdf = new \Mpdf\Mpdf();
+$mpdf = new \Mpdf\Mpdf(['orientation' => 'L']);
 
 $dataInicio = filter_input(INPUT_POST, 'dataInicio');
 $dataFinal = filter_input(INPUT_POST, 'dataFinal');
+$inOut = filter_input(INPUT_POST, 'in-out') == 'entrada' ? '1' : '0';
+
+// echo $inOut;
+// exit;
 
 $usuario = $_SESSION['getInfo']['nome'];
 
-$sql = $pdo->query("SELECT * FROM relatorio WHERE DATE(datatime) BETWEEN '$dataInicio' AND '$dataFinal'");
+if (!empty($dataInicio) && !empty($dataFinal)) {
 
-$itensDataEstabelecida = $sql->fetchAll(PDO::FETCH_ASSOC);
+  $sql = $pdo->query("SELECT * FROM relatorio WHERE DATE(datatime) BETWEEN '$dataInicio' AND '$dataFinal'");
 
-$html = "";
-$html .= '<div style="
-  padding: 0;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-itens: center;
-  text-align: center;
-  margin: auto;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10px;
-">';
-$html .= '<h1 style="text-align: center;">Relatótio <small> de '.$dataInicio.' até '.$dataFinal.'</small></h1>';
-$html .= '<table style="
-  width:80%;
-  margin: 30px auto;
-  padding: 0;
-  ">';
+  $itensDataEstabelecida = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+} elseif (!empty($inOut) || $inOut == '0') {
   
-$html .= '<thead>';
+  $sql = $pdo->query("SELECT * FROM relatorio WHERE operacao = '$inOut'");
 
-$html .= '<tr>';
-
-$html .= '<th>Usuario</th>';
-$html .= '<th>Operação</th>';
-$html .= '<th>Produto</th>';
-$html .= '<th>Quantidade Operação</th>';
-$html .= '<th>Quantidade Atual</th>';
-$html .= '<th>Doutor</th>';
-$html .= '<th>Data e Hora</th>';
-
-$html .= '</tr>';
-$html .= '</thead>';
-
-$html .= '<tbody style="
-  text-align: center;
-">';
-
-foreach($itensDataEstabelecida as $item) {
-
-  $html .= '<tr>';
-  $html .= '<td>'.$usuario.'</td>';
-  $html .= '<td>'.$item['operacao'].'</td>';
-  $html .= '<td>'.$item['produto'].'</td>';
-  $html .= '<td>'.$item['qntOperacao'].'</td>';
-  $html .= '<td>'.$item['qntAtual'].'</td>';
-  $html .= '<td>'.$item['medico'].'</td>';
-  $html .= '<td>'.$item['datatime'].'</td>';
-  $html .= '</tr>';
-
+  $itensDataEstabelecida = $sql->fetchAll(PDO::FETCH_ASSOC);
 }
-$html .= '</div>';
 
-$html .= '</tbody>';
-$html .= '</table>';
+// print_r ($itensDataEstabelecida);
+// exit;
 
+// $itensDataEstabelecida = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+ob_start();
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório</title>
+  <link rel="stylesheet" href="assets/css/style-pdf.css" media="print">
+</head>
+<body>
+
+<?php 
+  if (!empty($inOut) || $inOut == "0") {
+    $op = ($inOut == "1") ? "Entrada" : "Saída";
+
+    echo "<h3> Relatório de ".$op."</h3>";
+  } else {
+    echo "<h3>Relatório de: ".$dataInicio." até: ".$dataFinal."</h3>";
+  }
+?>
+  <hr>
+  <div class='relatorio'>
+    <table>
+      <thead>
+        <tr>
+          <th>Usuário</th>
+          <th>Operação</th>
+          <th>Produto</th>
+          <th>Qnt Operação</th>
+          <th>Qnt Atual</th>
+          <th>Doutor</th>
+          <th>Data e Hora</th>
+        </tr>
+      </thead>
+      <tbody>
+          <?php foreach($itensDataEstabelecida as $item): ?>
+          <tr>
+            <td><?=$usuario?></td>
+            <td><?=$item['operacao'] ? "Entrada" : "Saída" ?></td>
+            <td><?=$item['produto'] ?></td>
+            <td><?=$item['qntOperacao'] ?></td>
+            <td><?=$item['qntAtual'] ?></td>
+            <td><?=$item['medico'] ?></td>
+            <td><?=$item['datatime'] ?></td>
+          </tr>
+          <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
+
+<?php 
+
+$html = ob_get_contents();
+ob_end_clean();
+
+// echo $html;
+
+$style = file_get_contents('assets/css/style-pdf.css');
+
+$mpdf->SetDisplayMode('fullwidth');
+
+$mpdf->WriteHTML($style, 1);
 $mpdf->WriteHTML($html);
 $mpdf->Output();
