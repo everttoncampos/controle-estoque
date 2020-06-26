@@ -1,12 +1,14 @@
 <?php
-// require ("header-lancamentos.php");
 require ("Produto.class.php");
 
 $id = isset($_GET['id']) ? addslashes($_GET['id']) : null;
-$op = isset($_GET['op']) ? addslashes($_GET['op']) : 0;
 
-// var_dump($op);
-// exit;
+if (!empty($_GET['op']) == 1) {
+  $op = "Entrada";
+} elseif (!empty($_GET['op']) == 0) {
+  $op = "Saída";
+}
+
 $prod = "";
 $p = new Produto();
 
@@ -24,8 +26,6 @@ if($id === null) {
   <title>Document</title>
 </head>
 <body>
-  <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-  <span aria-hidden="true">&times;</span> -->
 <div class="container">
   
   <form action="lancamentos-action.php" method="POST">
@@ -52,7 +52,7 @@ if($id === null) {
       </div>
       <div class="form-group col-md-4">            
         <label for="medico">Médico (a)</label>
-          <select name="medico" id="medico" class="form-control" <?=($op=="1" ? "disabled" : "") ?>>
+          <select name="medico" id="medico" class="form-control" <?=($op=="Entrada" ? "disabled" : "") ?>>
             <option value=""></option>
             <option value="Dr. Elder">Dr. Elder</option>
             <option value="Dra. Gabriela">Dra.Gabriela</option>
@@ -63,7 +63,7 @@ if($id === null) {
       <div class="form-group col-md-6">            
         <label for="operacao">Operação</label>
         <select id="operacao" class="form-control" name="operacao">
-          <option value="<?=$op?>"><?php echo ($op == "1") ? "Entrada" : "Saida"; ?></option>
+          <option value="<?=$op?>"><?=$op?></option>
         </select>
       </div>
         <div class="form-group col-md-6">
@@ -72,14 +72,9 @@ if($id === null) {
         </div>
     </dvi>
     <input type="hidden" name="id" value="<?=$prod['id'];?>">
-    <input type="submit" class="btn btn-<?php echo ($op == "1") ? "success" : "danger" ?>" value="<?php echo ($op == "1") ? "Entrada" : "Saida"; ?>">
+    <input type="submit" class="btn btn-<?php echo ($op == "Entrada") ? "success" : "danger" ?>" value="<?php echo $op; ?>">
   </form>
 
 </div>
-
-
-
-  <!-- <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
 </body>
 </html>
