@@ -19,7 +19,7 @@ require('header.php');
   </div> -->
 
   <div style="display:block;" id="data">
-    <form action="relatorio-data-action1.php" method="POST">
+    <form action="relatorio-data-action.php" method="POST">
     <label for="dataInicio">De: </label>  
     <input type="date" name="dataInicio"> 
     <label for="dataFinal">Até: </label>  
@@ -32,7 +32,7 @@ require('header.php');
 
     <p>Escolha uma opção:</p>
 
-    <form action="relatorio-data-action1.php" method="POST" id="in-out">
+    <form action="relatorio-data-action.php" method="POST" id="in-out">
 
       <select name="in-out" id="in-out">
 
