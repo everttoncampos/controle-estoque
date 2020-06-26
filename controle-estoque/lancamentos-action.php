@@ -14,7 +14,7 @@ $item = $p->getItem($id);
 $medico = filter_input(INPUT_POST, 'medico');
 
 
-if ($operacao === "1") {
+if ($operacao === "Entrada") {
 
   $qntItemAtual = intval($item['qnt']) + $qntInserida;
 
@@ -65,5 +65,4 @@ if ($operacao === "1") {
     header("Location: index.php");
 
   }
-
 }
