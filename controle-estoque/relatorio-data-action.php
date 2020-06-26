@@ -7,7 +7,7 @@ $mpdf = new \Mpdf\Mpdf(['orientation' => 'L']);
 
 $dataInicio = filter_input(INPUT_POST, 'dataInicio');
 $dataFinal = filter_input(INPUT_POST, 'dataFinal');
-$inOut = filter_input(INPUT_POST, 'in-out') == 'entrada' ? '1' : '0';
+$inOut = filter_input(INPUT_POST, 'in-out');
 
 // echo $inOut;
 // exit;
@@ -46,10 +46,9 @@ ob_start();
 <body>
 
 <?php 
-  if (!empty($inOut) || $inOut == "0") {
-    $op = ($inOut == "1") ? "Entrada" : "Saída";
-
-    echo "<h3> Relatório de ".$op."</h3>";
+  if (!empty($inOut)) {
+    
+    echo "<h3> Relatório de ".$inOut."</h3>";
   } else {
     echo "<h3>Relatório de: ".$dataInicio." até: ".$dataFinal."</h3>";
   }
@@ -72,7 +71,7 @@ ob_start();
           <?php foreach($itensDataEstabelecida as $item): ?>
           <tr>
             <td><?=$usuario?></td>
-            <td><?=$item['operacao'] ? "Entrada" : "Saída" ?></td>
+            <td><?=$item['operacao']?></td>
             <td><?=$item['produto'] ?></td>
             <td><?=$item['qntOperacao'] ?></td>
             <td><?=$item['qntAtual'] ?></td>
