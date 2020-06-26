@@ -23,7 +23,7 @@ Instalação:
 
 - Nescessário rodar o composer na pasta.
   - Dependendia apenas do Mpdf, para gerar os arquivos PDF.
- - Exportar o arquivo sql, que contem as informações do banco para poder rodar junto com o sistema.
+ - Exportar o arquivo sql, que contem as informações do banco para poder rodar junto com o sistema. O mesmo já está pronto para criar o banco e as tabelas, junto com as colunas, apenas precisa garregar o arquivo.
  - Login: 
   - email: suporte@dev.com.be
   - senha: 123456789
