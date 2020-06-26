@@ -16,3 +16,18 @@ Cada vez que faz um operação com entrada e saida, é registrada no banco de da
 O relatório é gerado em pdf, pode ser salvo e enviado para o responsável que interessa as informações.
 
 Banco de dados usando é o MySQL, está aqui disponivel também o arquivo com as tabelas e campos.
+
+Nas pastas contém tudo que precisa para poder rodar o sistema.
+
+Instalação:
+
+- Nescessário rodar o composer na pasta.
+  - Dependendia apenas do Mpdf, para gerar os arquivos PDF.
+ - Exportar o arquivo sql, que contem as informações do banco para poder rodar junto com o sistema.
+ - Login: 
+  - email: suporte@dev.com.be
+  - senha: 123456789
+  
+ Essas são as informações para poder testar o sistema.
+ 
+ O mesmo ainda está em desenvolvimento, mais essa semana estarei subindo mais algumas atualizações.
