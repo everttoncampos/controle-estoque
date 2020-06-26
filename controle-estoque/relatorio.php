@@ -18,7 +18,7 @@ require('header.php');
     <label for="saida">Saída</label></br>
   </div> -->
 
-  <div style="display:none;" id="data">
+  <div style="display:block;" id="data">
     <form action="relatorio-data-action1.php" method="POST">
     <label for="dataInicio">De: </label>  
     <input type="date" name="dataInicio"> 
