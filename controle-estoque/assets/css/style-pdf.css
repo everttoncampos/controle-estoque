@@ -1,0 +1,31 @@
+.relatorio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 10px;
+}
+
+table th, td {
+  text-align: center;
+  padding: 5px 10px;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(150, 230, 150, 0.5);
+}
+tr:nth-child(odd) {
+  background-color: #abc;
+}
+thead tr {
+  background-color: #CCC !important;
+
+}
+td, th {
+  padding: 15px 10px;
+  font-weight: 600;
+}
+h3 {
+  margin: 0;
+  padding: 0;
+}

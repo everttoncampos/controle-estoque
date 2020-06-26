@@ -1,0 +1,135 @@
+body {
+  margin: 0;
+  padding: 0;  
+  overflow: hidden;
+}
+
+.bg-inovatto {
+  background-color: #194037;
+}
+.topo {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  color: white;
+  font-size: 25px;
+}
+.bg-inovatto-header {
+  background-color: #588076;
+}
+.topo h2 {
+  line-height: 60px;
+}
+/* .texto h2 {
+  float: right;
+} */
+
+.align {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nome {
+  line-height: 60px;
+  float: right;
+}
+
+.nome span {
+  font-size: 18px;
+}
+
+.nome a {
+  text-decoration: none;
+  color: red;
+  font-size: 16px;
+}
+
+
+.conteudo {
+  padding: 15px;
+}
+table {
+  margin-top: 20px;
+}
+button a {  
+  text-decoration: none;  
+  color: white;
+}
+form {
+  margin-top: 15px;
+  margin-right: 15px;
+}
+th.acao {
+  text-align: center;
+}
+td.botoes {
+  text-align: center;
+}
+tr.acao:hover {
+  background-color: #EEE;
+}
+#ResultadoFiltro {
+  height: 600px;
+  overflow-y: scroll;
+}
+.pesquisa {
+  width: 350px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+}
+a.controle {
+  color: white;
+  line-height: 60px;
+  font-size: 18px;
+  float: right;
+}
+.modal_bg {
+  display: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width:100%;
+  height: 100%;
+  z-index:99;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.modal-body {
+  z-index: 200;
+}
+.modal_conteudo .conteudo-retorno{
+  position: absolute;
+  width:calc(100% - 10%);
+  height: 420px;
+  /* height:calc(100% - 30%); */  
+  margin-left: calc(5%);
+  margin-top: calc(5%);
+  background-color: #FFF;
+  z-index:200;
+  top: 0;
+  left: 0;
+}
+.close-x {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align:center;
+  color: #000;
+  border-radius: 50%;
+  background-color: #FF0;
+  position: relative;
+  right: 4%;
+  top: calc(-4%);
+  float: right;
+  z-index: 201;
+}
+.colorRed {  
+  color: #F00;
+}
+.modalAdd form {
+  padding: 15px;
+  margin-right:-3px;
+}
